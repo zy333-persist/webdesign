@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Miscrosoft', sans-serif;
+}
+
+body {
+    background: #0a0a23;
+    color: #e0e0e0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+#particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(60deg, #0a0a23, #1a1a40);
+}
+@keyframes textGlow {
+    from { text-shadow: 0 0 10px rgba(46, 213, 255, 0.5); }
+    to { text-shadow: 0 0 20px rgba(46, 213, 255, 0.8); }
+}
+header h1{
+    color:white;
+    position: absolute;
+    left: 120px;
+    top:0;
+    line-height: 70px;
+}
+header ul{
+    position: absolute;
+    right:5vw;
+    top:3vw;
+    line-height:100px;
+}
+header a{
+    color: white;
+    text-decoration: none;
+}
+header a:hover{
+    text-decoration: underline;
+}
+header li{
+    display:inline;
+    margin-right:4vw;
+}
+.jsy {
+    color:white;
+    line-height: normal;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    display:flex;
+}
+.jsy p{
+    font-size:25px;
+    margin-top: 100px;
+}
+.jsy a{
+   text-decoration: none;
+    border:2px solid white;
+    padding:5px 20px;
+    border-radius:5px;
+    font-size:15px;
+    color: white;
+    }
+    .newsletter {
+       
+        padding: 60px 0;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        }
+        .newsletter p{
+        color: white;
+        margin-bottom: 10px;
+        font-size:20px;
+        }
+        .newsletter input,.newsletter button{
+        color:black;
+        border: 1px solid #949d9a;
+        padding:10px;
+        border-radius: 5px;
+        }
+        .newsletter input{
+        width: 200px;
+        margin-right: 15px;
+        }
+        .newsletter button{
+        width:80px;
+        cursor:pointer;
+        }
+        input::placeholder{
+        color:black;
+        }
+        input:focus{
+        outline:none;
+        border-color: #E0E9A3;
+        }
+        .menu{
+        display:none;
+    }
+    footer{
+            color:white;
+            height:40px;
+            display:flex;
+            justify-content:center;
+            font-size:14px;
+            align-items:center;
+            }
+    @media screen and (max-width:768px){
+        .jsy p{
+            font-size: 16px;
+        }
+        .jsy a{
+            font-size: 15px;
+        }
+        footer{
+           
+            flex-direction: column;
+             }
+    
+    }

@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Miscrosoft', sans-serif;
+}
+
+body {
+    background: #0a0a23;
+    color: #e0e0e0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+#particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background: linear-gradient(60deg, #0a0a23, #1a1a40);
+}
+.zt {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 3rem;
+}
+
+.zt h1 {
+    font-size: 4rem;
+    background: linear-gradient(45deg, #2e3cff, #bf2c95);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGlow 3s infinite alternate;
+}
+.yy {
+    padding: 4rem 10%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+    transform: translateY(50px);
+    opacity: 0;
+    transition: 0.8s;
+    border: 1px solid rgba(46, 213, 255, 0.2);
+}
+
+.card.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    background: rgba(46, 213, 255, 0.1);
+}
+
+.card i {
+    font-size: 2.5rem;
+    color: #2ed5ff;
+    margin-bottom: 1rem;
+}
+.card a{
+    color:white;
+    text-decoration: none;
+}
+.timeline {
+    position: relative;
+    padding: 4rem 10%;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, #2ed5ff, transparent);
+}
+
+.timeline-item {
+    position: relative;
+    width: 45%;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 2rem 0;
+    border-radius: 10px;
+    transform: translateX(calc(-50% - 25px));
+    opacity: 0;
+    transition: 1s;
+}
+
+.timeline-item:nth-child(even) {
+    margin-left: 55%;
+}
+
+.timeline-item.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 10px rgba(46, 213, 255, 0.5); }
+    to { text-shadow: 0 0 20px rgba(46, 213, 255, 0.8); }
+}

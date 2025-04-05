@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>application scenarios</title>
+    <link rel="stylesheet"href="style.css">
+    <style type="text/css">
+        .bt{
+    width:0;
+    height:50px;
+    font-size: 40px;
+    color: white;
+    white-space: nowrap;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div id="particles"></div>
+     <div class="bt">
+    <h>应用场景</h>
+</div>
+<ul>
+    <li><a href="file:///D:/home%20page/index.html">首页</a></li>
+<li><a href="file:///D:/development%20trend/index.html">发展趋势</a></li>
+</ul>
+</header>
+    <script>
+        function initParticles() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            document.getElementById('particles').appendChild(canvas);
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.radius = Math.random() * 2;
+                    this.alpha = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > canvas.width || 
+                        this.y < 0 || this.y > canvas.height) this.reset();
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(46, 213, 255, ${this.alpha})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            const particles = Array(100).fill().map(() => new Particle());
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.card, .timeline-item').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        window.addEventListener('load', () => {
+            initParticles();
+            initScrollAnimations();
+        });
+    </script>
+    <div class="banner">
+        <div class="banner_set">
+            <div class="banner_content"> 
+                <img src="images/yy1.jpg" alt="">
+            </div>
+            <div class="banner_content"> 
+                <img src="images/yy2.jpg" alt="">
+            </div>
+            <div class="banner_content"> 
+                <img src="images/yy3.jpg" alt="">
+            </div>
+            <div class="banner_content"> 
+                <img src="images/yy4.jpg" alt="">
+            </div>
+        </div>
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+</body>
+</html>
+
+

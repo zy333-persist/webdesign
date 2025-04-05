@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>AI数字人</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="particles"></div>
+    <section class="zt">
+        <h1>AI数字人</h1>
+        <p>代码赋予灵魂，智能唤醒真实</p>
+        <div class="scroll-indicator"></div>
+    </section>
+    <section class="timeline">
+        <div class="timeline-item">
+            <h3>萌芽阶段：20世纪80年代</h3>
+            <p>2D手绘为主：开始尝试将虚拟人物引入到现实世界中。</p>
+        </div>
+        <div class="timeline-item">
+            <h3>探索阶段：21世纪初</h3>
+            <p>CG+动捕为主：计算机技术面发展，电影大量应用带动改进成熟。</p>
+        </div>
+        <div class="timeline-item">
+            <h3>初级阶段：2016-2020</h3>
+            <p>AI驱动应用：AI算法的逐步应用，智能驱动的数字人崭露头角。</p>
+        </div>
+        <div class="timeline-item">
+            <h3>成长阶段：2021至今</h3>
+            <p>真实感虚拟偶像：精细化、多样化的虚拟偶像被广泛接纳并带动大家认知。</p>
+        </div>
+    </section>
+    <section class="yy">
+        <div class="card">
+            <i class="application"></i>
+            <h3><a href="file:///D:/application%20scenarios/index.html">应用场景</a></h3>
+        </div>
+        <div class="card">
+            <i class="trend"></i>
+            <h3><a href="file:///D:/development%20trend/index.html">发展趋势</a></h3>
+        </div>
+        <div class="card">
+            <i class="future"></i>
+            <h3><a href="file:///D:/end%20page/index.html">未来展望</a></h3>
+        </div>
+    </section>
+ <script>
+        function initParticles() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            document.getElementById('particles').appendChild(canvas);
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.radius = Math.random() * 2;
+                    this.alpha = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > canvas.width || 
+                        this.y < 0 || this.y > canvas.height) this.reset();
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(46, 213, 255, ${this.alpha})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            const particles = Array(100).fill().map(() => new Particle());
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.card, .timeline-item').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        window.addEventListener('load', () => {
+            initParticles();
+            initScrollAnimations();
+        });
+    </script>
+</body>
+</html>

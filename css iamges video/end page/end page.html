@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>end page</title>
+    <link rel="stylesheet"href="style.css">
+    <style type="text/css">
+        .bt{
+    width:0;
+    height:50px;
+    font-size: 40px;
+    color: white;
+    white-space: nowrap;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div id="particles"></div>
+</header>
+    <script>
+        function initParticles() {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            document.getElementById('particles').appendChild(canvas);
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.radius = Math.random() * 2;
+                    this.alpha = Math.random() * 0.5 + 0.1;
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > canvas.width || 
+                        this.y < 0 || this.y > canvas.height) this.reset();
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(46, 213, 255, ${this.alpha})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            const particles = Array(100).fill().map(() => new Particle());
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+        function initScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.card, .timeline-item').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        window.addEventListener('load', () => {
+            initParticles();
+            initScrollAnimations();
+        });
+    </script>
+    <section class="jsy">
+        <p>人工智能与人类共创的的时代已经到来，数字人作为这场变革的前沿载体，正在重新定义效率、创造与连接的边界。</p>
+        <p>它们不仅是代码与算法的结晶，更是人类想象力照进现实的镜像。</p>
+        <p>未来，当虚拟与现实的双生花绽放于更多场景，希望我们始终怀有敬畏之心，让技术为人性服务，用创新传递温度。</p>
+        <p><a href="file:///D:/home%20page/index.html">回到首页</a></p>
+    </section>
+    <section class="newsletter">
+        <p>欢迎大家来交流讨论！</p>
+        <form>
+            <input type="email" placeholder="请输入您的Email"required>
+            <button type="submit">送出</button>
+        </form>
+    </section>
+    <footer>
+        <blockquote>“数字人将成为人类在虚拟世界的延伸，既是工具，也是伙伴”</blockquote>
+        <p>Copyright AI数字人 All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+
